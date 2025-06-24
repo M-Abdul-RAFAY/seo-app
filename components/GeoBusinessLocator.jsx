@@ -565,12 +565,15 @@ const GeoBusinessLocator = () => {
                         min="10"
                         max="1000"
                         value={totalPoints}
-                        onChange={(e) =>
-                          setTotalPoints(parseInt(e.target.value) || 360)
-                        }
+                        onChange={(e) => {
+                          let val = parseInt(e.target.value) || 360;
+                          if (val > 1000) val = 1000;
+                          setTotalPoints(val);
+                        }}
                         className="w-full px-3 text-gray-900 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         disabled={isProcessing}
                       />
+                      <span className="text-xs text-gray-500">Max: 1000</span>
                     </div>
 
                     <div>
@@ -582,9 +585,11 @@ const GeoBusinessLocator = () => {
                         min="1"
                         max="10"
                         value={numDiscs}
-                        onChange={(e) =>
-                          setNumDiscs(parseInt(e.target.value) || 5)
-                        }
+                        onChange={(e) => {
+                          let val = parseInt(e.target.value) || 5;
+                          if (val > 10) val = 10;
+                          setNumDiscs(val);
+                        }}
                         className="w-full px-3 text-gray-900 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         disabled={isProcessing}
                       />
